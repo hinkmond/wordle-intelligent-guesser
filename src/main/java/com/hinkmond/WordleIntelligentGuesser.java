@@ -18,11 +18,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class WordleIntelligentGuesser {
     final static int WORD_LENGTH = 5;
     final static boolean DEBUG = false;
-    String[] correctArray = new String[WORD_LENGTH];
-    HashSet<String> presentMap = new HashSet<>();
-    HashSet<String> absentMap = new HashSet<>();
-    HashSet<String>  guessedMap = new HashSet<>();
-    ArrayList<String> wordsList = new ArrayList<>();
+    final String[] correctArray = new String[WORD_LENGTH];
+    final HashSet<String> presentMap = new HashSet<>();
+    final HashSet<String> absentMap = new HashSet<>();
+    final HashSet<String>  guessedMap = new HashSet<>();
+    final ArrayList<String> wordsList = new ArrayList<>();
     final int[] maxScore = {0};
     Map<String, Integer> scoreMap = null;
 
