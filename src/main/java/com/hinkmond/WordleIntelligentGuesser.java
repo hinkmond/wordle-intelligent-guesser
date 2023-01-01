@@ -6,10 +6,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.Duration;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,7 +23,7 @@ public class WordleIntelligentGuesser {
     HashSet<String> absentMap = new HashSet<>();
     HashSet<String>  guessedMap = new HashSet<>();
     ArrayList<String> wordsList = new ArrayList<>();
-    final int maxScore[] = {0};
+    final int[] maxScore = {0};
     Map<String, Integer> scoreMap = null;
 
     public void solvePuzzle() {
@@ -58,7 +56,7 @@ public class WordleIntelligentGuesser {
         driver.manage().window();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-       // Open browser with desried URL
+       // Open browser with desired URL
         driver.get("https://www.nytimes.com/games/wordle/index.html");
 
         // Selector for Game instructions close "X" button: body > div > div > dialog > div > button > svg
@@ -74,8 +72,8 @@ public class WordleIntelligentGuesser {
                 .findElement
                         (By.cssSelector("#wordle-app-game > div.Keyboard-module_keyboard__1HSnn > div:nth-child(3) > button:nth-child(1)"));
 
-        // First, get focus of keyboard
-        keyEnter.click();
+        // First, get focus of keyboard in root game element
+        rootGameApp.click();
 
         String[] firstChoices =
                 {"AISLE", "TEARS", "STALE", "SLIME", "STORE"};
@@ -95,9 +93,9 @@ public class WordleIntelligentGuesser {
                 keyEnter.sendKeys(nextGuess);
                 keyEnter.click();
 
-                waitForTileAnimation(driver, rootGameApp);
+                waitForTileAnimation(driver);
 
-                nextGuess = getNextGuess(driver, rootGameApp, i + 1);
+                nextGuess = getNextGuess(driver, i + 1);
                 if (getNumCorrect(prevWord, correctArray) == 5) {
                     System.out.println("CORRECT!");
                     break;
@@ -108,7 +106,7 @@ public class WordleIntelligentGuesser {
                     List<Map.Entry<String, Integer>> scoreList = new ArrayList<>(scoreMap.entrySet());
                     scoreList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
                     List<Map.Entry<String, Integer>> topList = scoreList.stream().limit(5)
-                            .collect(Collectors.toList());
+                            .toList();
 
                     int count = 0;
                     for (Map.Entry<String, Integer> entry : topList) {
@@ -127,7 +125,8 @@ public class WordleIntelligentGuesser {
         //driver.close();
     }
 
-    public String getNextGuess(WebDriver driver, SearchContext shadowRootGameApp, int currentRowNum) {
+    @SuppressWarnings("SuspiciousMethodCalls")
+    public String getNextGuess(WebDriver driver, int currentRowNum) {
         String rowCounterStr = String.valueOf(currentRowNum);
 
 
@@ -143,10 +142,8 @@ public class WordleIntelligentGuesser {
         // Row Property for word entered: textContent
         final String gameRowLettersStr = gameRow.getDomProperty("textContent");
         List<Character> gameRowLettersList =
-                gameRowLettersStr.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
+                gameRowLettersStr.chars().mapToObj(e -> (char) e).toList();
 
-        final String maxWord[] = {null};
-        final int correctScore[] = {0};
         int evalPosition = 0;
         for (int colCounter=1; colCounter<6; colCounter++) {
             if (!gameRowLettersList.isEmpty()) {
@@ -154,33 +151,33 @@ public class WordleIntelligentGuesser {
 
                 String tileElementSelector =
                         "#wordle-app-game > div.Board-module_boardContainer__cKb-C > div > div:nth-child(" +
-                                rowCounterStr + ") > div:nth-child(" + String.valueOf(colCounter) + ") > div";
+                                rowCounterStr + ") > div:nth-child(" + colCounter + ") > div";
 
                 String evaluation = driver.findElement(By.cssSelector(tileElementSelector))
                                           .getAttribute("data-state");
 
                 switch (evaluation) {
-                    case "absent":
-                        long count = gameRowLettersStr.codePoints().filter(ch -> ch == letter.charAt(0)).count();
+                    case "absent" -> {
+                        long count = gameRowLettersStr.codePoints()
+                                                      .filter(ch -> ch == letter.charAt(0))
+                                                      .count();
                         if (count < 2) {
                             absentMap.add(letter);
                         }
-                        break;
-                    case "present":
-                        presentMap.add(letter);
-                        break;
-                    case "correct":
-                        correctArray[Integer.valueOf(evalPosition)] = letter;
-                        break;
-                    default:
-                        break;
+                    }
+                    case "present" -> presentMap.add(letter);
+                    case "correct" -> correctArray[evalPosition] = letter;
+                    default -> {
+                    }
                 }
             }
             evalPosition++;
-        };
+        }
 
         maxScore[0] = 0;
         scoreMap = new HashMap<>();
+        final String[] maxWord = {null};
+        final int[] correctScore = {0};
         wordsList.forEach(word -> {
             if ((!guessedMap.contains(word)) && (getNumCorrect(word, correctArray) != 5)) {
                 // Check for any absent letters
@@ -199,15 +196,13 @@ public class WordleIntelligentGuesser {
                 char[] wordCharArray = word.toCharArray();
 
                 // Number of repeated letters in the new guess
-                int repeatedLetters = 0;
+                int repeatedLetters;
                 Set<String> lettersHashSet = new LinkedHashSet<>();
-                for (int i = 0; i < wordCharArray.length; i++) {
-                    String wordLetter = String.valueOf(wordCharArray[i]);
-                    if (!lettersHashSet.contains(wordLetter)) {
-                        lettersHashSet.add(wordLetter);
-                    }
+                for (char c : wordCharArray) {
+                    String wordLetter = String.valueOf(c);
+                    lettersHashSet.add(wordLetter);
                 }
-                repeatedLetters = (5 - lettersHashSet.size()) * 2;
+                repeatedLetters = 5 * 2 - lettersHashSet.size() * 2;
 
                 // Number of same letters in previous guess as in the new guess
                 int sameLetters = 0;
@@ -241,7 +236,7 @@ public class WordleIntelligentGuesser {
                     correctScore[0] -= sameLetters;
                 }
 
-                if ((correctScore[0] - absentScore) > maxScore[0]  && !guessedMap.contains(maxWord)) {
+                if (((correctScore[0] - absentScore) > maxScore[0]) && !guessedMap.contains(maxWord)) {
                     maxScore[0] = (correctScore[0] - absentScore);
                     maxWord[0] = word;
                 }
@@ -272,7 +267,7 @@ public class WordleIntelligentGuesser {
                 }
 
                 // If new max score, then record this as the best guess
-                if ((presentScore - absentScore) > maxScore[0] && !guessedMap.contains(maxWord)) {
+                if (((presentScore - absentScore) > maxScore[0]) && !guessedMap.contains(maxWord)) {
                     maxScore[0] = (presentScore - absentScore);
                     maxWord[0] = word;
                 }
@@ -295,7 +290,7 @@ public class WordleIntelligentGuesser {
         return maxWord[0];
     }
 
-    public void waitForTileAnimation(WebDriver driver, SearchContext shadowRootGameApp) {
+    public void waitForTileAnimation(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         WebElement tile;
