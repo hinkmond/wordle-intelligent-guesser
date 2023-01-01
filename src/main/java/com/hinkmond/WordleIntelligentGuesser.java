@@ -125,7 +125,6 @@ public class WordleIntelligentGuesser {
         //driver.close();
     }
 
-    @SuppressWarnings("SuspiciousMethodCalls")
     public String getNextGuess(WebDriver driver, int currentRowNum) {
         String rowCounterStr = String.valueOf(currentRowNum);
 
@@ -236,7 +235,7 @@ public class WordleIntelligentGuesser {
                     correctScore[0] -= sameLetters;
                 }
 
-                if (((correctScore[0] - absentScore) > maxScore[0]) && !guessedMap.contains(maxWord)) {
+                if (((correctScore[0] - absentScore) > maxScore[0]) && !guessedMap.contains(maxWord[0])) {
                     maxScore[0] = (correctScore[0] - absentScore);
                     maxWord[0] = word;
                 }
@@ -267,7 +266,7 @@ public class WordleIntelligentGuesser {
                 }
 
                 // If new max score, then record this as the best guess
-                if (((presentScore - absentScore) > maxScore[0]) && !guessedMap.contains(maxWord)) {
+                if (((presentScore - absentScore) > maxScore[0]) && !guessedMap.contains(maxWord[0])) {
                     maxScore[0] = (presentScore - absentScore);
                     maxWord[0] = word;
                 }
