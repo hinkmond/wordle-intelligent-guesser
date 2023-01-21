@@ -184,7 +184,7 @@ public class WordleIntelligentGuesser {
                 for (Character letterChar : word.toCharArray()) {
                     String letterString = String.valueOf(letterChar);
                     if (absentMap.contains(letterString)) {
-                        absentScore += 9;
+                        absentScore += 17;
                     }
                 }
 
