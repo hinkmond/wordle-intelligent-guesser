@@ -201,7 +201,7 @@ public class WordleIntelligentGuesser {
                     String wordLetter = String.valueOf(c);
                     lettersHashSet.add(wordLetter);
                 }
-                repeatedLetters = 5 * 2 - lettersHashSet.size() * 2;
+                repeatedLetters = 5 - lettersHashSet.size();
 
                 // Number of same letters in previous guess as in the new guess
                 int sameLetters = 0;
@@ -227,7 +227,7 @@ public class WordleIntelligentGuesser {
                 }
 
                 // Reduce score of new guess by number of repeated letters
-                correctScore[0] -= (repeatedLetters * 8);
+                correctScore[0] -= (repeatedLetters * 22);
 
 
                 // Reduce score of new guess by number of same letters as last time
@@ -258,7 +258,7 @@ public class WordleIntelligentGuesser {
                 }
 
                 // Reduce score of new guess by number of repeated letters
-                presentScore -= (repeatedLetters * 14);
+                presentScore -= (repeatedLetters * 31);
 
                 // Reduce score of new guess by number of same letters as last time
                 if (sameLetters > 0) {
