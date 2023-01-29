@@ -221,7 +221,7 @@ public class WordleIntelligentGuesser {
                 for (Character wordChar : word.toCharArray()) {
                     String wordLetter = String.valueOf(wordChar);
                     if (wordLetter.equals(correctArray[correctPosition])) {
-                        correctScore[0] += 46;
+                        correctScore[0] += 139;
                     }
                     correctPosition++;
                 }
@@ -258,7 +258,7 @@ public class WordleIntelligentGuesser {
                 }
 
                 // Reduce score of new guess by number of repeated letters
-                presentScore -= (repeatedLetters * 31);
+                presentScore -= (repeatedLetters * 41);
 
                 // Reduce score of new guess by number of same letters as last time
                 if (sameLetters > 0) {
