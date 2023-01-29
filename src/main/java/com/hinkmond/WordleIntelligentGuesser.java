@@ -221,7 +221,7 @@ public class WordleIntelligentGuesser {
                 for (Character wordChar : word.toCharArray()) {
                     String wordLetter = String.valueOf(wordChar);
                     if (wordLetter.equals(correctArray[correctPosition])) {
-                        correctScore[0] += 33;
+                        correctScore[0] += 46;
                     }
                     correctPosition++;
                 }
@@ -248,7 +248,7 @@ public class WordleIntelligentGuesser {
                 for (int i=0; i<wordCharArray.length; i++) {
                     String wordLetter = String.valueOf(wordCharArray[i]);
                     if (presentMap.contains(wordLetter)) {
-                        presentScore += 29;
+                        presentScore += 34;
                     }
                     // Reduce score if same letter was tried before and is not the correct letter in this position
                     if ((i == gameRowLettersStr.indexOf(wordLetter)) &&
