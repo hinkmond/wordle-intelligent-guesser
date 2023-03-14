@@ -28,7 +28,7 @@ public class WordleIntelligentGuesser {
 
     public void solvePuzzle() {
         ChromeOptions chrome_options = new ChromeOptions();
-        chrome_options.addArguments("--window-size=860,680", "--window-position=0,0");
+        chrome_options.addArguments("--window-size=860,680", "--window-position=0,0", "--remote-allow-origins=*");
         WebDriver driver = new ChromeDriver(chrome_options);
         WebElement closeIcon;
         WebElement keyEnter;
