@@ -5315,7 +5315,6 @@ jujus
 debar
 pubes
 taels
-defun
 rands
 blear
 paver
