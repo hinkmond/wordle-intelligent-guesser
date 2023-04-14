@@ -248,7 +248,7 @@ public class WordleIntelligentGuesser {
                 for (int i=0; i<wordCharArray.length; i++) {
                     String wordLetter = String.valueOf(wordCharArray[i]);
                     if (presentMap.contains(wordLetter)) {
-                        presentScore += 44;
+                        presentScore += 46;
                     }
                     // Reduce score if same letter was tried before and is not the correct letter in this position
                     if ((i == gameRowLettersStr.indexOf(wordLetter)) &&
@@ -258,7 +258,7 @@ public class WordleIntelligentGuesser {
                 }
 
                 // Reduce score of new guess by number of repeated letters
-                presentScore -= (repeatedLetters * 44);
+                presentScore -= (repeatedLetters * 46);
 
                 // Reduce score of new guess by number of same letters as last time
                 if (sameLetters > 0) {
