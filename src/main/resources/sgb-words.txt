@@ -3778,7 +3778,6 @@ slobs
 trike
 funky
 ducat
-dewey
 skoal
 wadis
 oomph
