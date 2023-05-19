@@ -60,9 +60,15 @@ public class WordleIntelligentGuesser {
        // Open browser with desired URL
         driver.get("https://www.nytimes.com/games/wordle/index.html");
 
+        // First, click the "Play" button
+        // XPath for Play button: /html/body/div/div/div/div/div[3]/button[2]
+        WebElement playButton = driver
+                .findElement(By.xpath("/html/body/div/div/div/div/div[3]/button[2]"));
+        playButton.click();
+
+        // Next, click the close "X" button.
         // Selector for Game instructions close "X" button: body > div > div > dialog > div > button > svg
-        WebElement gameIcon = driver.findElement(By.cssSelector("body > div > div > dialog > div > button"));
-        closeIcon = gameIcon.findElement(By.cssSelector("body > div > div > dialog > div > button > svg"));
+        closeIcon = driver.findElement(By.cssSelector("body > div > div > dialog > div > button > svg"));
         closeIcon.click();
 
         // Selector for World App: #wordle-app-game
@@ -77,7 +83,7 @@ public class WordleIntelligentGuesser {
         rootGameApp.click();
 
         String[] firstChoices =
-                {"AISLE", "TEARS", "STALE", "SLIME", "STORE"};
+                {"AISLE", "TEARS", "STALE", "ADIOS", "RHYME", "STORE", "THYME"};
                 //{"AISLE", "TEARS", "REALS", "STALE", "SLIME", "STARE", "STORE"};
                 //{"SLIME"};
         Random random = new Random();
