@@ -82,8 +82,7 @@ public class WordleIntelligentGuesser {
         rootGameApp.click();
 
         String[] firstChoices =
-                {"THYME"};
-                //{"AISLE", "TEARS", "STALE", "ADIOS", "RHYME", "STORE"};
+                {"AISLE", "TEARS", "STALE", "ADIOS", "RHYME", "STORE", "THYME"};
                 //{"AISLE", "TEARS", "REALS", "STALE", "SLIME", "STARE", "STORE"};
                 //{"SLIME"};
         Random random = new Random();
