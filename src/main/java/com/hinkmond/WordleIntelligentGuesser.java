@@ -29,7 +29,7 @@ public class WordleIntelligentGuesser {
     public void solvePuzzle() {
         ChromeOptions chrome_options = new ChromeOptions();
         chrome_options.addArguments("--window-size=860,680", "--window-position=0,0", "--remote-allow-origins=*");
-        System.setProperty("webdriver.chrome.driver","/opt/brew/bin/chromedriver");
+        System.setProperty("webdriver.chrome.driver","/opt/homebrew/bin/chromedriver");
         WebDriver driver = new ChromeDriver(chrome_options);
         WebElement closeIcon;
         WebElement keyEnter;
