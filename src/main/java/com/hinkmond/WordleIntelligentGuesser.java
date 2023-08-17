@@ -81,7 +81,7 @@ public class WordleIntelligentGuesser {
         // Selector for Enter key: /html/body/div/div/div[2]/div/div[2]/div[3]/button[1]
         keyEnter = driver
                 .findElement
-                        (By.xpath("/html/body/div/div/div[2]/div/div[2]/div[3]/button[1]"));
+                        (By.xpath("/html/body/div/div/div[2]/main/div[2]/div[3]/button[1]"));
 
         // First, get focus of keyboard in root game element
         rootGameApp.click();
@@ -140,13 +140,13 @@ public class WordleIntelligentGuesser {
         String rowCounterStr = String.valueOf(currentRowNum);
 
 
-        // Selector for Row 1: #wordle-app-game > div.Board-module_boardContainer__cKb-C > div > div:nth-child(1)
-        // Selector for Row 2: #wordle-app-game > div.Board-module_boardContainer__cKb-C > div > div:nth-child(2)
+        // Selector for Row 1: #wordle-app-game > /html/body/div/div/div[2]/main/div[1]/div/div[1]
+        // Selector for Row 2: #wordle-app-game > /html/body/div/div/div[2]/main/div[1]/div/div[2]
         //..
-        // Selector for Row n: #wordle-app-game > div.Board-module_boardContainer__cKb-C > div > div:nth-child(n)
+        // Selector for Row n: #wordle-app-game > d/html/body/div/div/div[2]/main/div[1]/div/div[n]
         WebElement gameRow = driver
                 .findElement(
-                        By.xpath("/html/body/div/div/div/div/div[1]/div/div["
+                        By.xpath("/html/body/div/div/div[2]/main/div[1]/div/div["
                                 + rowCounterStr + "]"));
 
         // Row Property for word entered: textContent
@@ -160,9 +160,8 @@ public class WordleIntelligentGuesser {
                 String letter = String.valueOf(gameRowLettersList.get(evalPosition));
 
                 String tileElementSelector =
-                        "/html/body/div/div/div/div/div[1]/div/div[" +
-                                rowCounterStr + "]/div[" + colCounter + "]/div";
-
+                        "/html/body/div/div/div[2]/main/div[1]/div/div[" +
+                                rowCounterStr +"]/div[" + colCounter + "]/div";
                 String evaluation = driver.findElement(By.xpath(tileElementSelector))
                                           .getAttribute("data-state");
 
@@ -312,14 +311,15 @@ public class WordleIntelligentGuesser {
             for (int colCounter = 1; colCounter < 6; colCounter++) {
                 colCounterStr = String.valueOf(colCounter);
                 // Row 1:
-                //   Tile 1: /html/body/div/div/div[2]/div/div[1]/div/div[1]/div[1]/div
-                //   Tile 2: /html/body/div/div/div[2]/div/div[1]/div/div[1]/div[2]/div
+                //   Tile 1: /html/body/div/div/div[2]/main/div[1]/div/div[1]/div[1]/div
+                // Row 2
+                //   Tile 1: /html/body/div/div/div[2]/main/div[1]/div/div[2]/div[1]/div
                 //...
                 // Tile n: /html/body/div/div/div[2]/div/div[1]/div/div[ROW]/div[COL]/div
                 // #wordle-app-game > div.Board-module_boardContainer__TBHNL > div > div:nth-child(1) > div:nth-child(5) > div
                 tile = driver.findElement
-                                     (By.xpath("/html/body/div/div/div/div/div[1]/div/div[" +
-                                             rowCounterStr + "]/div[" + colCounterStr + "]/div"));
+                                     (By.xpath("/html/body/div/div/div[2]/main/div[1]/div/div[" +
+                                             rowCounterStr +"]/div[" + colCounterStr + "]/div"));
                 wait.until(ExpectedConditions.attributeToBe(tile, "data-animation", "idle"));
             }
         }
