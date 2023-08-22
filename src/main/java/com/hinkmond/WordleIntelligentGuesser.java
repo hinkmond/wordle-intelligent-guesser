@@ -78,7 +78,7 @@ public class WordleIntelligentGuesser {
         // Selector for World App: #wordle-app-game
         WebElement rootGameApp = driver.findElement(By.cssSelector("#wordle-app-game"));
 
-        // Selector for Enter key: /html/body/div/div/div[2]/div/div[2]/div[3]/button[1]
+        // Selector for Enter key: /html/body/div/div/div[2]/main/div[2]/div[3]/button[1]
         keyEnter = driver
                 .findElement
                         (By.xpath("/html/body/div/div/div[2]/main/div[2]/div[3]/button[1]"));
