@@ -65,9 +65,9 @@ public class WordleIntelligentGuesser {
                 .findElement(By.xpath("/html/body/div[2]/div/div/button"));
         continueButton.click();
 
-        // Next, click the "Play" button:
+        // Next, click the "Play" button: /html/body/div/div/div/div/div/div[2]/button[2]
         WebElement playButton = driver
-                .findElement(By.xpath("/html/body/div/div/div/div/div/div[4]/button[2]"));
+                .findElement(By.xpath("/html/body/div/div/div/div/div/div[2]/button[2]"));
         playButton.click();
 
         // Next, click the close "X" button.
