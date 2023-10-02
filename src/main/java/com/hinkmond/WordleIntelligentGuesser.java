@@ -61,9 +61,9 @@ public class WordleIntelligentGuesser {
         driver.get("https://www.nytimes.com/games/wordle/index.html");
 
         // First, click the "Continue" button
-        WebElement continueButton = driver
-                .findElement(By.xpath("/html/body/div[2]/div/div/button"));
-        continueButton.click();
+//        WebElement continueButton = driver
+//                .findElement(By.xpath("/html/body/div[2]/div/div/button"));
+//        continueButton.click();
 
         // Next, click the "Play" button: /html/body/div/div/div/div/div/div[2]/button[2]
         WebElement playButton = driver
