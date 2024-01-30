@@ -72,7 +72,7 @@ public class WordleIntelligentGuesser {
 
         // Next, click the close "X" button.
         // Selector for Game instructions close "X" button (not SVG)
-        closeIcon = driver.findElement(By.xpath("/html/body/div/div/dialog/div/button"));
+        closeIcon = driver.findElement(By.xpath("/html/body/div/div/dialog/div/div/button"));
         closeIcon.click();
 
         // Selector for World App: #wordle-app-game
