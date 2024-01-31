@@ -21,15 +21,15 @@ public class WordleIntelligentGuesser {
     final String[] correctArray = new String[WORD_LENGTH];
     final HashSet<String> presentMap = new HashSet<>();
     final HashSet<String> absentMap = new HashSet<>();
+    final int[] maxScore = {0};
     final HashSet<String>  guessedMap = new HashSet<>();
     final ArrayList<String> wordsList = new ArrayList<>();
-    final int[] maxScore = {0};
     Map<String, Integer> scoreMap = null;
 
     public void solvePuzzle() {
         ChromeOptions chrome_options = new ChromeOptions();
         chrome_options.addArguments("--window-size=860,680", "--window-position=0,0", "--remote-allow-origins=*");
-        chrome_options.setBinary("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome");
+        chrome_options.setBinary("/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing");
         WebDriver driver = new ChromeDriver(chrome_options);
         WebElement closeIcon;
         WebElement keyEnter;
@@ -81,7 +81,7 @@ public class WordleIntelligentGuesser {
         // full XPath for Enter key: /html/body/div/div/div[4]/main/div[2]/div[3]/button[1]
         keyEnter = driver
                 .findElement(
-                        By.xpath("/html/body/div/div/div[4]/main/div[2]/div[3]/button[1]"));
+                        By.xpath("/html/body/div/div/div[3]/main/div[2]/div[3]/button[1]"));
 
         // First, get focus of keyboard in root game element
         rootGameApp.click();
