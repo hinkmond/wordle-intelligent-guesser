@@ -50,7 +50,7 @@ public class WordleIntelligentGuesser {
                 wordsList.add(word);
             }
         } catch (IOException ioException) {
-            ioException.printStackTrace();
+            System.err.println(ioException.getMessage());
         }
 
         // Create ChromeDriver window
