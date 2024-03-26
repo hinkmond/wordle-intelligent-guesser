@@ -78,10 +78,10 @@ public class WordleIntelligentGuesser {
         // Selector for World App: #wordle-app-game
         WebElement rootGameApp = driver.findElement(By.cssSelector("#wordle-app-game"));
 
-        // full XPath for Enter key: /html/body/div/div/div[4]/main/div[2]/div[3]/button[1]
+        // full XPath for Enter key: /html/body/div/div/div[3]/main/div[2]/div[3]/button[1]
         keyEnter = driver
                 .findElement(
-                        By.xpath("/html/body/div/div/div[4]/main/div[2]/div[3]/button[1]"));
+                        By.xpath("/html/body/div/div/div[3]/main/div[2]/div[3]/button[1]"));
 
         // First, get focus of keyboard in root game element
         rootGameApp.click();
