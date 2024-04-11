@@ -55,7 +55,7 @@ public class WordleIntelligentGuesser {
 
         // Create ChromeDriver window
         driver.manage().window();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 
        // Open browser with desired URL
         driver.get("https://www.nytimes.com/games/wordle/index.html");
