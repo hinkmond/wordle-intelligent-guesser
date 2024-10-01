@@ -30,6 +30,7 @@ public class WordleIntelligentGuesser {
         ChromeOptions chrome_options = new ChromeOptions();
         chrome_options.addArguments("--window-size=860,820", "--window-position=0,0", "--remote-allow-origins=*");
         chrome_options.setBinary("/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing");
+        System.setProperty("webdriver.chrome.driver", "/opt/homebrew/bin/chromedriver");
         WebDriver driver = new ChromeDriver(chrome_options);
         WebElement closeIcon;
         WebElement keyEnter;
