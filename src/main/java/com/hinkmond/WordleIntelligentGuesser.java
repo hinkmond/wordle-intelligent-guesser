@@ -69,13 +69,13 @@ public class WordleIntelligentGuesser {
 
         // Next, click the "Try Free" button
         //   /html/body/div[2]/div/div/div[2]/div[1]/button
-        WebElement tryFreeButton = driver
-                .findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[1]/button"));
-        tryFreeButton.click();
+//        WebElement tryFreeButton = driver
+//                .findElement(By.xpath("/html/body/div[2]/div/div/div[2]/div[1]/button"));
+//        tryFreeButton.click();
 
         // Next, click the "Play" button: /html/body/div/div/div/div/div/div[2]/button[2]
         WebElement playButton = driver
-                .findElement(By.xpath("/html/body/div/div/div/div/div/div[2]/button[2]"));
+                .findElement(By.xpath("/html/body/div[2]/div/div/div/div/div[2]/button[3]"));
         playButton.click();
 
         // Next, click the close "X" button.
