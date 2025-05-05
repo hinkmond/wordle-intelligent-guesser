@@ -63,9 +63,9 @@ public class WordleIntelligentGuesser {
 
         // First, click the "Continue" button
         //   body > div.purr-blocker-card.pz-hide-games-app.pz-hide-newsreader > div > div > button
-        WebElement continueButton = driver
-                .findElement(By.xpath("/html/body/div[3]/div/div/button"));
-        continueButton.click();
+//        WebElement continueButton = driver
+//                .findElement(By.xpath("/html/body/div[3]/div/div/button"));
+//        continueButton.click();
 
         // Next, click the "Try Free" button
         //   /html/body/div[2]/div/div/div[2]/div[1]/button
