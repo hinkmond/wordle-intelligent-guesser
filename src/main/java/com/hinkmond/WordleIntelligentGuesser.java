@@ -80,7 +80,7 @@ public class WordleIntelligentGuesser {
 
         // Next, click the close "X" button.
         // Selector for Game instructions close "X" button (not SVG)
-        closeIcon = driver.findElement(By.xpath("/html/body/div/div/dialog/div/div/button"));
+        closeIcon = driver.findElement(By.cssSelector("button[aria-label='Close']"));
         closeIcon.click();
 
         // Selector for World App: #wordle-app-game
@@ -154,7 +154,7 @@ public class WordleIntelligentGuesser {
         // Selector for Row n: #wordle-app-game > /html/body/div/div/div/main/div[1]/div/div[n]
         WebElement gameRow = driver
                 .findElement(
-                        By.xpath("/html/body/div/div/div/main/div[1]/div/div["
+                        By.xpath("/html/body/div/div[2]/div[1]/div[4]/main/div[1]/div/div["
                                 + rowCounterStr + "]"));
 
         // Row Property for word entered: textContent
@@ -168,7 +168,7 @@ public class WordleIntelligentGuesser {
                 String letter = String.valueOf(gameRowLettersList.get(evalPosition));
 
                 String tileElementSelector =
-                        "/html/body/div/div/div/main/div[1]/div/div[" +
+                        "/html/body/div/div[2]/div[1]/div[4]/main/div[1]/div/div[" +
                                 rowCounterStr +"]/div[" + colCounter + "]/div";
                 String evaluation = driver.findElement(By.xpath(tileElementSelector))
                                           .getAttribute("data-state");
@@ -318,16 +318,16 @@ public class WordleIntelligentGuesser {
             String colCounterStr;
             for (int colCounter = 1; colCounter < 6; colCounter++) {
                 colCounterStr = String.valueOf(colCounter);
-                // Row 1:
-                //   Tile 1: /html/body/div/div/div/main/div[1]/div/div[1]/div[1]/div
-                // Row 2
-                //   Tile 1: /html/body/div/div/div/main/div[1]/div/div[2]/div[1]/div
+                //   Tile 2,1: /html/body/div/div[2]/div[1]/div[4]/main/div[1]/div/div[2]/div[1]/div
+                //   Tile 2,1: /html/body/div/div[2]/div[1]/div[4]/main/div[1]/div/div[2]/div[2]/div
+                //...
+                //   Tile 3,3: /html/body/div/div[2]/div[1]/div[4]/main/div[1]/div/div[3]/div[3]/div
                 //...
                 // Row R
                 //   Tile N: /html/body/div/div/div/main/div[1]/div/div[R]/div[N]/div
                 // #wordle-app-game > div.Board-module_boardContainer__TBHNL > div > div:nth-child(1) > div:nth-child(5) > div
                 tile = driver.findElement
-                                     (By.xpath("/html/body/div/div/div/main/div[1]/div/div[" +
+                                     (By.xpath("/html/body/div/div[2]/div[1]/div[4]/main/div[1]/div/div[" +
                                              rowCounterStr +"]/div[" + colCounterStr + "]/div"));
                 wait.until(ExpectedConditions.attributeToBe(tile, "data-animation", "idle"));
             }
