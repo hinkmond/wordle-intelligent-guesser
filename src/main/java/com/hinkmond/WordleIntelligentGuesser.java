@@ -227,7 +227,7 @@ public class WordleIntelligentGuesser {
                     System.out.println("  word: " + word);
                     System.out.println("  gameRowLettersStr: " + gameRowLettersStr);
                 }
-                for (int i=0; i<wordCharArray.length; i++) {
+                for (int i=0; i<word.length(); i++) {
                     if (word.substring(i, i+1).equals(gameRowLettersStr.substring(i, i+1))) {
                         sameLetters++;
                     }
